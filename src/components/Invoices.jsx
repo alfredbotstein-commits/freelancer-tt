@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react'
 import { store } from '../store'
 import { formatMoney, formatHours } from '../utils'
+import { isPremium } from '../premium'
 import { jsPDF } from 'jspdf'
-import { FileText, Download, ChevronDown, Check, Settings, ArrowLeft, Trash2, Eye, CircleDot, Send, CheckCircle2, Upload, Plus } from 'lucide-react'
+import { FileText, Download, ChevronDown, Check, Settings, ArrowLeft, Trash2, Eye, CircleDot, Send, CheckCircle2, Upload, Plus, Lock, Sparkles } from 'lucide-react'
 
 const STATUS_COLORS = {
   draft: { bg: 'bg-[#f1f5f9]', text: 'text-[#64748b]', label: 'Draft' },
@@ -292,6 +293,42 @@ function buildPDF(invoiceData) {
   return doc
 }
 
+function PremiumUpsell() {
+  return (
+    <div className="flex flex-col items-center justify-center py-12 px-6">
+      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center mb-4">
+        <Lock className="w-8 h-8 text-white" />
+      </div>
+      <h2 className="text-xl font-bold text-[#1e293b] mb-2">Unlock Invoicing</h2>
+      <p className="text-sm text-[#64748b] text-center mb-6 max-w-xs">
+        Generate professional invoices, track payments, and export reports with Freelance Timer Pro.
+      </p>
+      <div className="bg-white rounded-xl p-4 border border-[#e2e8f0] w-full max-w-xs space-y-3 mb-6">
+        <div className="flex items-center gap-2 text-sm text-[#1e293b]">
+          <Sparkles className="w-4 h-4 text-[#f59e0b]" />
+          <span>Professional PDF invoices</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-[#1e293b]">
+          <Sparkles className="w-4 h-4 text-[#f59e0b]" />
+          <span>Invoice history & tracking</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-[#1e293b]">
+          <Sparkles className="w-4 h-4 text-[#f59e0b]" />
+          <span>CSV export</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-[#1e293b]">
+          <Sparkles className="w-4 h-4 text-[#f59e0b]" />
+          <span>Unlimited projects</span>
+        </div>
+      </div>
+      <button className="w-full max-w-xs py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#f59e0b] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] transition-all active:scale-[0.98]">
+        Upgrade to Pro
+      </button>
+      <p className="text-xs text-[#94a3b8] mt-3">One-time purchase · No subscription</p>
+    </div>
+  )
+}
+
 export function Invoices() {
   const [view, setView] = useState('list') // list | create | settings
   const [clientId, setClientId] = useState('')
@@ -432,6 +469,11 @@ export function Invoices() {
   const deleteInvoice = (id) => {
     store.deleteInvoice(id)
     setView('list')
+  }
+
+  // Gate invoices behind premium
+  if (!isPremium()) {
+    return <PremiumUpsell />
   }
 
   if (view === 'settings') {

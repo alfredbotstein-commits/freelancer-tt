@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { store } from '../store'
 import { formatMoney } from '../utils'
-import { Plus, X, Trash2, ChevronDown, User, Briefcase } from 'lucide-react'
+import { isPremium, FREE_PROJECT_LIMIT } from '../premium'
+import { Plus, X, Trash2, ChevronDown, User, Briefcase, Lock } from 'lucide-react'
 
 export function Projects({ onUpdate }) {
   const [showClientForm, setShowClientForm] = useState(false)
@@ -11,6 +12,9 @@ export function Projects({ onUpdate }) {
 
   const clients = store.getClients()
   const projects = store.getProjects()
+
+  const canAddProject = isPremium() || projects.length < FREE_PROJECT_LIMIT
+  const projectsRemaining = FREE_PROJECT_LIMIT - projects.length
 
   const saveClient = () => {
     if (!clientForm.name.trim()) return
@@ -80,9 +84,16 @@ export function Projects({ onUpdate }) {
       {/* Projects */}
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-[#1e293b] flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-[#2563eb]" /> Projects
-          </h2>
+          <div>
+            <h2 className="text-lg font-semibold text-[#1e293b] flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-[#2563eb]" /> Projects
+            </h2>
+            {!isPremium() && (
+              <p className="text-xs text-[#94a3b8]">
+                {projectsRemaining > 0 ? `${projectsRemaining} free project${projectsRemaining === 1 ? '' : 's'} remaining` : 'Upgrade for more projects'}
+              </p>
+            )}
+          </div>
           <button onClick={() => setShowProjectForm(!showProjectForm)} className="w-8 h-8 rounded-lg bg-[#2563eb] text-white flex items-center justify-center">
             {showProjectForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           </button>
@@ -106,10 +117,16 @@ export function Projects({ onUpdate }) {
                 placeholder="0.00" min="0" step="0.01" className="w-full pl-7 pr-16 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#94a3b8]">/hour</span>
             </div>
-            <button onClick={saveProject} disabled={clients.length === 0} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium disabled:opacity-40">
+            <button onClick={saveProject} disabled={clients.length === 0 || !canAddProject} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium disabled:opacity-40">
               Add Project
             </button>
             {clients.length === 0 && <p className="text-xs text-[#f59e0b] text-center">Add a client first</p>}
+            {!canAddProject && (
+              <div className="flex items-center gap-2 justify-center text-xs text-[#f59e0b]">
+                <Lock className="w-3 h-3" />
+                <span>Upgrade to Pro for unlimited projects</span>
+              </div>
+            )}
           </div>
         )}
 
