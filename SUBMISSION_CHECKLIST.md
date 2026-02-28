@@ -12,13 +12,13 @@
 - [x] Premium gating on Invoices (upsell card for free users)
 - [x] Premium gating on Projects (3 free, unlimited premium)
 - [x] localStorage-based premium flag (ready for RevenueCat wiring)
-- [ ] RevenueCat SDK integrated with real API key
-- [ ] One-time IAP ($3.99) tested end-to-end
+- [x] RevenueCat SDK integrated (API key placeholder "NEEDS_KEY" — needs real key from RevenueCat dashboard)
+- [ ] One-time IAP ($3.99) tested end-to-end (blocked on real API key)
 
 ## Crash Reporting
 - [x] Sentry initialized in main.jsx
 - [x] ErrorBoundary wrapping App
-- [ ] Replace placeholder DSN with real Sentry DSN
+- [x] Sentry DSN placeholder "NEEDS_KEY" — needs real DSN from Sentry dashboard
 
 ## Store Listing
 - [x] STORE_LISTING.md created (title, short desc, full desc, keywords)
