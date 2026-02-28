@@ -15,6 +15,7 @@
     "@capacitor/core": "^8.1.0",
     "@capacitor/preferences": "^8.0.1",
     "@revenuecat/purchases-capacitor": "^12.2.1",
+    "@sentry/capacitor": "^3.1.0",
     "@sentry/react": "^10.40.0",
     "@supabase/supabase-js": "^2.97.0",
     "@tailwindcss/vite": "^4.2.1",
