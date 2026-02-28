@@ -11,16 +11,29 @@ const KEYS = {
 function get(key) {
   try { return JSON.parse(localStorage.getItem(key)) || []; } catch { return []; }
 }
-function set(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+function set(key, data) {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (e) {
+    console.error('localStorage write failed:', e);
+  }
+}
+
+// Sanitize string: trim, cap length, strip control chars (keep emojis)
+function sanitizeString(str, maxLen = 200) {
+  if (typeof str !== 'string') return '';
+  return str.trim().slice(0, maxLen).replace(/[\x00-\x1F\x7F]/g, '');
+}
 
 export const store = {
   // Clients
   getClients: () => get(KEYS.clients),
   saveClient: (client) => {
     const clients = get(KEYS.clients);
-    const existing = clients.findIndex(c => c.id === client.id);
-    if (existing >= 0) clients[existing] = { ...clients[existing], ...client };
-    else clients.push({ ...client, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
+    const sanitized = { ...client, name: sanitizeString(client.name) };
+    const existing = clients.findIndex(c => c.id === sanitized.id);
+    if (existing >= 0) clients[existing] = { ...clients[existing], ...sanitized };
+    else clients.push({ ...sanitized, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
     set(KEYS.clients, clients);
     return clients;
   },
@@ -34,9 +47,10 @@ export const store = {
   getProjects: () => get(KEYS.projects),
   saveProject: (project) => {
     const projects = get(KEYS.projects);
-    const existing = projects.findIndex(p => p.id === project.id);
-    if (existing >= 0) projects[existing] = project;
-    else projects.push({ ...project, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
+    const sanitized = { ...project, name: sanitizeString(project.name) };
+    const existing = projects.findIndex(p => p.id === sanitized.id);
+    if (existing >= 0) projects[existing] = sanitized;
+    else projects.push({ ...sanitized, id: crypto.randomUUID(), createdAt: new Date().toISOString() });
     set(KEYS.projects, projects);
     return projects;
   },

@@ -410,6 +410,9 @@ export function Invoices() {
     const invoiceNumber = store.getNextInvoiceNumber()
     const issueDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     const dueDate = getDueDate(new Date(), effectiveTerms).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    const clampedTax = Math.min(100, Math.max(0, effectiveTax))
+    const clampedTaxAmount = subtotal * (clampedTax / 100)
+    const clampedTotal = subtotal + clampedTaxAmount
 
     const invoiceData = {
       settings,
@@ -424,11 +427,11 @@ export function Invoices() {
       issueDate,
       dueDate,
       paymentTerms: effectiveTerms,
-      taxRate: effectiveTax,
+      taxRate: clampedTax,
       notes: effectiveNotes,
       subtotal,
-      taxAmount,
-      total,
+      taxAmount: clampedTaxAmount,
+      total: clampedTotal,
     }
 
     const doc = buildPDF(invoiceData)
@@ -446,9 +449,9 @@ export function Invoices() {
       dateFrom,
       dateTo,
       subtotal,
-      taxRate: effectiveTax,
-      taxAmount,
-      totalAmount: total,
+      taxRate: clampedTax,
+      taxAmount: clampedTaxAmount,
+      totalAmount: clampedTotal,
       entryCount: filteredEntries.length,
       paymentTerms: effectiveTerms,
       status: 'draft',

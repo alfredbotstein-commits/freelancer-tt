@@ -26,10 +26,11 @@ export function Projects({ onUpdate }) {
 
   const saveProject = () => {
     if (!projectForm.name.trim() || !projectForm.clientId) return
+    const rate = Math.min(9999, Math.max(0, parseFloat(projectForm.hourlyRate) || 0))
     store.saveProject({
       name: projectForm.name.trim(),
       clientId: projectForm.clientId,
-      hourlyRate: parseFloat(projectForm.hourlyRate) || 0,
+      hourlyRate: rate,
     })
     setProjectForm({ name: '', clientId: '', hourlyRate: '' })
     setShowProjectForm(false)
@@ -55,9 +56,9 @@ export function Projects({ onUpdate }) {
         {showClientForm && (
           <div className="bg-white rounded-xl p-4 border border-[#e2e8f0] space-y-3 mb-3">
             <input type="text" value={clientForm.name} onChange={e => setClientForm({ ...clientForm, name: e.target.value })}
-              placeholder="Client name" className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
+              placeholder="Client name" maxLength={200} className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
             <input type="email" value={clientForm.email} onChange={e => setClientForm({ ...clientForm, email: e.target.value })}
-              placeholder="Email (optional)" className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
+              placeholder="Email (optional)" maxLength={500} className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
             <button onClick={saveClient} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium">Add Client</button>
           </div>
         )}
@@ -102,7 +103,7 @@ export function Projects({ onUpdate }) {
         {showProjectForm && (
           <div className="bg-white rounded-xl p-4 border border-[#e2e8f0] space-y-3 mb-3">
             <input type="text" value={projectForm.name} onChange={e => setProjectForm({ ...projectForm, name: e.target.value })}
-              placeholder="Project name" className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
+              placeholder="Project name" maxLength={200} className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
             <div className="relative">
               <select value={projectForm.clientId} onChange={e => setProjectForm({ ...projectForm, clientId: e.target.value })}
                 className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0] rounded-lg text-sm appearance-none pr-8">

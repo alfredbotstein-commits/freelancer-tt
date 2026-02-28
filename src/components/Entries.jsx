@@ -11,8 +11,8 @@ export function Entries({ onUpdate }) {
   const clients = store.getClients()
 
   const save = () => {
-    const h = parseFloat(form.hours || 0)
-    const m = parseFloat(form.minutes || 0)
+    const h = Math.min(999, Math.max(0, parseFloat(form.hours || 0)))
+    const m = Math.min(59, Math.max(0, parseFloat(form.minutes || 0)))
     const duration = (h * 3600 + m * 60) * 1000
     if (!form.projectId || duration <= 0) return
     store.saveEntry({
@@ -65,6 +65,7 @@ export function Entries({ onUpdate }) {
           <input type="text" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
             placeholder="Description" className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
           <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })}
+            max={new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)}
             className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
           <div className="flex gap-2">
             <input type="number" value={form.hours} onChange={e => setForm({ ...form, hours: e.target.value })}

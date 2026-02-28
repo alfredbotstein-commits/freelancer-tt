@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1920px; overflow:hidden; font-family:'Inter',system-ui,sans-serif; background:#EEF0F7; display:flex; align-items:center; justify-content:center; }
+.frame { width:1080px; height:1920px; display:flex; flex-direction:column; align-items:center; padding:60px 40px 40px; }
+.caption { font-size:52px; font-weight:800; color:#312E81; text-align:center; margin-bottom:8px; line-height:1.2; }
+.subcaption { font-size:28px; color:#6366F1; margin-bottom:40px; font-weight:500; }
+.phone { width:400px; height:1520px; background:#fff; border-radius:44px; box-shadow:0 20px 80px rgba(49,46,129,.25); overflow:hidden; border:8px solid #1E1B4B; position:relative; }
+.phone .notch { width:160px; height:28px; background:#1E1B4B; border-radius:0 0 16px 16px; margin:0 auto; }
+.phone .screen { padding:20px 24px; height:100%; overflow:hidden; }
+.status-bar { display:flex; justify-content:space-between; font-size:14px; color:#64748B; padding:4px 0 12px; }
+.app-bar { display:flex; align-items:center; justify-content:space-between; padding:8px 0 16px; }
+.app-title { font-size:24px; font-weight:700; color:#312E81; }
+.indigo-btn { background:#4F46E5; color:#fff; border:none; border-radius:12px; padding:14px 28px; font-size:17px; font-weight:600; width:100%; text-align:center; margin-top:12px; }
+.card { background:#F8F7FF; border-radius:16px; padding:16px; margin-bottom:12px; border:1px solid #E0E7FF; }
+.card-title { font-size:15px; font-weight:700; color:#312E81; }
+.card-sub { font-size:13px; color:#6366F1; margin-top:2px; }
+.card-right { font-size:15px; font-weight:700; color:#4F46E5; }
+.row { display:flex; justify-content:space-between; align-items:center; }
+.tag { display:inline-block; background:#E0E7FF; color:#4338CA; border-radius:8px; padding:4px 10px; font-size:12px; font-weight:600; }
+.divider { height:1px; background:#E0E7FF; margin:10px 0; }
+.input-field { background:#F1F0FB; border:2px solid #C7D2FE; border-radius:12px; padding:14px 16px; font-size:15px; color:#312E81; margin-bottom:10px; width:100%; }
+.label { font-size:13px; font-weight:600; color:#6366F1; margin-bottom:4px; }
+.timer-display { font-size:72px; font-weight:800; color:#4F46E5; text-align:center; margin:16px 0 8px; font-variant-numeric:tabular-nums; }
+.timer-project { font-size:20px; color:#312E81; text-align:center; font-weight:600; }
+.timer-client { font-size:15px; color:#6366F1; text-align:center; margin-bottom:16px; }
+.circle-btn { width:72px; height:72px; border-radius:50%; background:#EF4444; display:flex; align-items:center; justify-content:center; margin:0 auto; }
+.circle-btn .sq { width:24px; height:24px; background:#fff; border-radius:4px; }
+.tab-bar { display:flex; justify-content:space-around; padding:12px 0 8px; border-top:1px solid #E0E7FF; position:absolute; bottom:24px; left:0; right:0; }
+.tab { text-align:center; font-size:11px; color:#94A3B8; font-weight:600; }
+.tab.active { color:#4F46E5; }
+.tab-icon { font-size:20px; margin-bottom:2px; }
+.progress-bar { height:6px; background:#E0E7FF; border-radius:3px; margin-top:6px; }
+.progress-fill { height:6px; border-radius:3px; background:#4F46E5; }
+.badge { background:#4F46E5; color:#fff; border-radius:6px; padding:2px 8px; font-size:11px; font-weight:700; }
+.green { color:#16A34A; }
+.check { color:#4F46E5; font-size:18px; }
+</style></head><body>
+
+<div class="frame" id="screen1">
+  <div class="caption">Track Time Effortlessly</div>
+  <div class="subcaption">One tap to start, one tap to stop</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">⏱ Timer</span><span class="tag">● LIVE</span></div>
+    <div class="timer-display">02:34:17</div>
+    <div class="timer-project">Website Redesign</div>
+    <div class="timer-client">Client: Oakwood Studios</div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13px;color:#6366F1;margin-bottom:4px;">Today's Total</div>
+      <div style="font-size:28px;font-weight:800;color:#312E81;">5h 12m</div>
+    </div>
+    <div class="circle-btn"><div class="sq"></div></div>
+    <div style="text-align:center;margin-top:10px;font-size:14px;color:#EF4444;font-weight:600;">Tap to Stop</div>
+    <div class="divider" style="margin-top:20px;"></div>
+    <div class="row" style="margin-top:10px;"><span style="font-size:13px;color:#64748B;">Recent</span></div>
+    <div class="card" style="margin-top:8px;"><div class="row"><div><div class="card-title">Logo Package</div><div class="card-sub">Bright Lane Co.</div></div><div class="card-right">1h 45m</div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Brand Guidelines</div><div class="card-sub">Maple & Finch</div></div><div class="card-right">0h 53m</div></div></div>
+    <div class="tab-bar">
+      <div class="tab active"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen2" style="display:none;">
+  <div class="caption">All Projects at a Glance</div>
+  <div class="subcaption">See hours logged per project instantly</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">📁 Projects</span><span class="badge">6 Active</span></div>
+    <div class="card"><div class="row"><div><div class="card-title">Website Redesign</div><div class="card-sub">Oakwood Studios</div></div><div class="card-right">42h 15m</div></div><div class="progress-bar"><div class="progress-fill" style="width:84%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Logo Package</div><div class="card-sub">Bright Lane Co.</div></div><div class="card-right">18h 30m</div></div><div class="progress-bar"><div class="progress-fill" style="width:62%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Brand Guidelines</div><div class="card-sub">Maple & Finch</div></div><div class="card-right">12h 45m</div></div><div class="progress-bar"><div class="progress-fill" style="width:42%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">App UI Design</div><div class="card-sub">NovaTech Inc.</div></div><div class="card-right">31h 00m</div></div><div class="progress-bar"><div class="progress-fill" style="width:72%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Social Media Kit</div><div class="card-sub">Bloom Café</div></div><div class="card-right">8h 20m</div></div><div class="progress-bar"><div class="progress-fill" style="width:28%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Email Templates</div><div class="card-sub">Summit Health</div></div><div class="card-right">5h 50m</div></div><div class="progress-bar"><div class="progress-fill" style="width:19%;"></div></div></div>
+    <div style="margin-top:12px;" class="indigo-btn">+ New Project</div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab active"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen3" style="display:none;">
+  <div class="caption">Add Time Manually</div>
+  <div class="subcaption">Log hours you forgot to track</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">✏️ Manual Entry</span><span style="color:#4F46E5;font-weight:600;font-size:16px;">Save</span></div>
+    <div class="label">Project</div>
+    <div class="input-field">Website Redesign</div>
+    <div class="label">Client</div>
+    <div class="input-field">Oakwood Studios</div>
+    <div class="label">Date</div>
+    <div class="input-field">Feb 27, 2026</div>
+    <div style="display:flex;gap:10px;">
+      <div style="flex:1;"><div class="label">Start Time</div><div class="input-field">1:00 PM</div></div>
+      <div style="flex:1;"><div class="label">End Time</div><div class="input-field">4:30 PM</div></div>
+    </div>
+    <div class="label">Duration</div>
+    <div class="input-field" style="font-size:22px;font-weight:700;color:#4F46E5;text-align:center;">3h 30m</div>
+    <div class="label">Hourly Rate</div>
+    <div class="input-field">$85.00 / hr</div>
+    <div class="label">Notes</div>
+    <div class="input-field" style="height:80px;">Homepage layout revisions and responsive breakpoints</div>
+    <div class="card" style="margin-top:8px;text-align:center;background:#EEF2FF;">
+      <div style="font-size:13px;color:#6366F1;">Earnings for this entry</div>
+      <div style="font-size:28px;font-weight:800;color:#312E81;">$297.50</div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen4" style="display:none;">
+  <div class="caption">Invoice in Seconds</div>
+  <div class="subcaption">Generate professional invoices instantly</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">💰 Invoice #1042</span><span class="tag green" style="background:#DCFCE7;color:#16A34A;">Draft</span></div>
+    <div class="card" style="border:2px solid #C7D2FE;">
+      <div class="row"><div><div style="font-size:11px;color:#6366F1;">FROM</div><div class="card-title">Sarah Mitchell Design</div><div class="card-sub">sarah@mitchell.design</div></div></div>
+      <div class="divider"></div>
+      <div class="row"><div><div style="font-size:11px;color:#6366F1;">TO</div><div class="card-title">Oakwood Studios</div><div class="card-sub">billing@oakwoodstudios.com</div></div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:8px 0 6px;">Line Items</div>
+    <div class="card"><div class="row"><div><div class="card-title">Website Redesign</div><div class="card-sub">42h 15m × $85/hr</div></div><div class="card-right">$3,591.25</div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Brand Guidelines</div><div class="card-sub">12h 45m × $85/hr</div></div><div class="card-right">$1,083.75</div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Social Media Kit</div><div class="card-sub">8h 20m × $75/hr</div></div><div class="card-right">$625.00</div></div></div>
+    <div class="divider"></div>
+    <div class="row" style="padding:8px 0;"><div style="font-size:18px;font-weight:800;color:#312E81;">Total Due</div><div style="font-size:24px;font-weight:800;color:#4F46E5;">$5,300.00</div></div>
+    <div class="row" style="gap:10px;margin-top:8px;">
+      <div class="indigo-btn" style="flex:1;">📤 Send</div>
+      <div class="indigo-btn" style="flex:1;background:#EEF2FF;color:#4F46E5;">📄 PDF</div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab active"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen5" style="display:none;">
+  <div class="caption">Know Where Time Goes</div>
+  <div class="subcaption">Weekly & monthly hours breakdown</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">📊 Reports</span><div style="display:flex;gap:4px;"><span class="tag" style="background:#4F46E5;color:#fff;">Week</span><span class="tag">Month</span></div></div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13px;color:#6366F1;">This Week</div>
+      <div style="font-size:42px;font-weight:800;color:#312E81;">38h 25m</div>
+      <div style="font-size:14px;color:#16A34A;font-weight:600;">↑ 12% vs last week</div>
+    </div>
+    <div style="display:flex;gap:6px;margin:8px 0;">
+      <div style="flex:1;text-align:center;"><div style="background:#4F46E5;height:120px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Mon</div><div style="font-size:11px;font-weight:700;color:#312E81;">7.5h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#4F46E5;height:140px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Tue</div><div style="font-size:11px;font-weight:700;color:#312E81;">8.2h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#4F46E5;height:100px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Wed</div><div style="font-size:11px;font-weight:700;color:#312E81;">6.0h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#4F46E5;height:150px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Thu</div><div style="font-size:11px;font-weight:700;color:#312E81;">8.5h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#6366F1;height:90px;border-radius:8px 8px 0 0;border:2px dashed #4F46E5;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Fri</div><div style="font-size:11px;font-weight:700;color:#6366F1;">5.2h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#E0E7FF;height:40px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Sat</div><div style="font-size:11px;font-weight:700;color:#312E81;">2.0h</div></div>
+      <div style="flex:1;text-align:center;"><div style="background:#E0E7FF;height:20px;border-radius:8px 8px 0 0;"></div><div style="font-size:11px;color:#64748B;margin-top:4px;">Sun</div><div style="font-size:11px;font-weight:700;color:#312E81;">1.0h</div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:10px 0 6px;">By Project</div>
+    <div class="card"><div class="row"><div><div class="card-title">Website Redesign</div></div><div class="card-right">16h 30m</div></div><div class="progress-bar"><div class="progress-fill" style="width:43%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">App UI Design</div></div><div class="card-right">12h 00m</div></div><div class="progress-bar"><div class="progress-fill" style="width:31%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Logo Package</div></div><div class="card-right">6h 25m</div></div><div class="progress-bar"><div class="progress-fill" style="width:17%;"></div></div></div>
+    <div class="card"><div class="row"><div><div class="card-title">Other (3 projects)</div></div><div class="card-right">3h 30m</div></div><div class="progress-bar"><div class="progress-fill" style="width:9%;"></div></div></div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab active"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen6" style="display:none;">
+  <div class="caption">Manage Your Clients</div>
+  <div class="subcaption">Organize projects by client</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">👥 Clients</span><span class="badge">5</span></div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">Oakwood Studios</div><div class="card-sub">2 active projects</div></div><div><div class="card-right">$4,675</div><div style="font-size:11px;color:#6366F1;text-align:right;">54h 60m</div></div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">Bright Lane Co.</div><div class="card-sub">1 active project</div></div><div><div class="card-right">$1,665</div><div style="font-size:11px;color:#6366F1;text-align:right;">18h 30m</div></div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">NovaTech Inc.</div><div class="card-sub">1 active project</div></div><div><div class="card-right">$3,100</div><div style="font-size:11px;color:#6366F1;text-align:right;">31h 00m</div></div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">Maple & Finch</div><div class="card-sub">1 active project</div></div><div><div class="card-right">$1,084</div><div style="font-size:11px;color:#6366F1;text-align:right;">12h 45m</div></div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">Bloom Café</div><div class="card-sub">1 active project</div></div><div><div class="card-right">$625</div><div style="font-size:11px;color:#6366F1;text-align:right;">8h 20m</div></div></div>
+    </div>
+    <div style="margin-top:8px;" class="indigo-btn">+ Add Client</div>
+    <div class="card" style="margin-top:12px;background:#EEF2FF;text-align:center;">
+      <div style="font-size:13px;color:#6366F1;">Total Earnings (All Clients)</div>
+      <div style="font-size:28px;font-weight:800;color:#312E81;">$11,149.00</div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen7" style="display:none;">
+  <div class="caption">Export Anywhere</div>
+  <div class="subcaption">PDF invoices & CSV timesheets</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">⚙️ Export</span></div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:8px 0 8px;">Export Format</div>
+    <div class="card" style="border:2px solid #4F46E5;">
+      <div class="row"><div><div class="card-title">📄 PDF Report</div><div class="card-sub">Professional formatted timesheet</div></div><div class="check">✓</div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">📊 CSV Spreadsheet</div><div class="card-sub">Import to Excel or Google Sheets</div></div><div></div></div>
+    </div>
+    <div class="card">
+      <div class="row"><div><div class="card-title">💰 Invoice PDF</div><div class="card-sub">Client-ready invoice document</div></div><div></div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:12px 0 8px;">Date Range</div>
+    <div class="card" style="border:2px solid #4F46E5;"><div class="row"><div class="card-title">This Month</div><div style="color:#4F46E5;font-size:14px;">Feb 1 – 27, 2026</div></div></div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:12px 0 8px;">Include</div>
+    <div class="card"><div class="row"><div class="card-title">All Projects</div><div class="check">✓</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">All Clients</div><div class="check">✓</div></div></div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:12px 0 8px;">Share Via</div>
+    <div style="display:flex;gap:8px;">
+      <div class="card" style="flex:1;text-align:center;"><div style="font-size:24px;">📧</div><div style="font-size:12px;font-weight:600;color:#312E81;">Email</div></div>
+      <div class="card" style="flex:1;text-align:center;"><div style="font-size:24px;">📁</div><div style="font-size:12px;font-weight:600;color:#312E81;">Files</div></div>
+      <div class="card" style="flex:1;text-align:center;"><div style="font-size:24px;">☁️</div><div style="font-size:12px;font-weight:600;color:#312E81;">Drive</div></div>
+    </div>
+    <div class="indigo-btn" style="margin-top:12px;">Export Now</div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab active"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+<div class="frame" id="screen8" style="display:none;">
+  <div class="caption">Unlock Everything</div>
+  <div class="subcaption">One-time purchase. No subscriptions.</div>
+  <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status-bar"><span>9:41</span><span>⚡ 87%</span></div>
+    <div class="app-bar"><span class="app-title">⭐ Premium</span></div>
+    <div class="card" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);border:none;text-align:center;padding:24px;">
+      <div style="font-size:18px;color:#C7D2FE;font-weight:600;">Freelancer TT Pro</div>
+      <div style="font-size:52px;font-weight:800;color:#fff;margin:8px 0;">$3.99</div>
+      <div style="font-size:15px;color:#C7D2FE;">One-time purchase · Forever yours</div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#312E81;margin:12px 0 8px;">Everything in Pro</div>
+    <div class="card"><div class="row"><div class="card-title">✅ Unlimited Projects & Clients</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ Invoice Generation</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ PDF & CSV Export</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ Detailed Reports & Charts</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ Multiple Hourly Rates</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ Data Backup & Restore</div></div></div>
+    <div class="card"><div class="row"><div class="card-title">✅ No Ads, Ever</div></div></div>
+    <div class="card" style="background:#FEF3C7;border-color:#F59E0B;text-align:center;margin-top:8px;">
+      <div style="font-size:14px;font-weight:700;color:#92400E;">🔒 No subscriptions. Pay once, own forever.</div>
+    </div>
+    <div class="indigo-btn" style="margin-top:8px;font-size:19px;">Upgrade to Pro — $3.99</div>
+    <div class="tab-bar">
+      <div class="tab"><div class="tab-icon">⏱</div>Timer</div>
+      <div class="tab"><div class="tab-icon">📁</div>Projects</div>
+      <div class="tab"><div class="tab-icon">📊</div>Reports</div>
+      <div class="tab"><div class="tab-icon">💰</div>Invoice</div>
+      <div class="tab active"><div class="tab-icon">⚙️</div>More</div>
+    </div>
+  </div></div>
+</div>
+
+</body></html>

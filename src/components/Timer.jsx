@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { store } from '../store'
 import { formatDuration } from '../utils'
 import { Play, Square, ChevronDown } from 'lucide-react'
@@ -11,6 +11,7 @@ export function Timer({ onEntryAdded }) {
   const projects = store.getProjects()
   const clients = store.getClients()
   const intervalRef = useRef(null)
+  const debounceRef = useRef(false)
 
   const running = timer?.running
 
@@ -25,19 +26,29 @@ export function Timer({ onEntryAdded }) {
     }
   }, [running, timer?.startedAt])
 
-  const start = () => {
-    if (!projectId) return
+  const start = useCallback(() => {
+    if (!projectId || debounceRef.current) return
+    debounceRef.current = true
+    setTimeout(() => { debounceRef.current = false }, 500)
     const t = { running: true, startedAt: Date.now(), projectId, description }
     store.setTimer(t)
     setTimer(t)
-  }
+  }, [projectId, description])
 
-  const stop = () => {
-    if (!timer) return
-    const duration = Date.now() - timer.startedAt
+  const stop = useCallback(() => {
+    if (!timer || debounceRef.current) return
+    debounceRef.current = true
+    setTimeout(() => { debounceRef.current = false }, 500)
+    const MAX_DURATION = 86400000 // 24 hours
+    let duration = Date.now() - timer.startedAt
+    let desc = timer.description || ''
+    if (duration > MAX_DURATION) {
+      desc = desc ? `${desc} (capped at 24h)` : '(capped at 24h)'
+      duration = MAX_DURATION
+    }
     store.saveEntry({
       projectId: timer.projectId,
-      description: timer.description || '',
+      description: desc,
       startedAt: new Date(timer.startedAt).toISOString(),
       duration,
       date: new Date(timer.startedAt).toISOString().slice(0, 10),
@@ -47,7 +58,7 @@ export function Timer({ onEntryAdded }) {
     setDescription('')
     setElapsed(0)
     onEntryAdded?.()
-  }
+  }, [timer, onEntryAdded])
 
   const project = projects.find(p => p.id === projectId)
   const client = project ? clients.find(c => c.id === project.clientId) : null

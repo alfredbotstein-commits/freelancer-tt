@@ -1,10 +1,23 @@
 import { Capacitor } from "@capacitor/core";
 import { checkPremium as rcCheckPremium, purchasePremium as rcPurchase, restorePurchases as rcRestore } from "./revenueCat";
 
-const PREMIUM_KEY = "ftt_premium";
+const PREMIUM_KEY = "ftt_ux_cfg";
+const PREMIUM_PREFIX = "premium_active_";
 
-export const isPremium = () => localStorage.getItem(PREMIUM_KEY) === "true";
-export const setPremium = (val) => localStorage.setItem(PREMIUM_KEY, val ? "true" : "false");
+export const isPremium = () => {
+  const val = localStorage.getItem(PREMIUM_KEY);
+  if (!val) return false;
+  try {
+    return atob(val).startsWith(PREMIUM_PREFIX);
+  } catch { return false; }
+};
+export const setPremium = (val) => {
+  if (val) {
+    localStorage.setItem(PREMIUM_KEY, btoa(PREMIUM_PREFIX + Date.now()));
+  } else {
+    localStorage.removeItem(PREMIUM_KEY);
+  }
+};
 export const FREE_PROJECT_LIMIT = 3;
 export const PREMIUM_FEATURES = ["invoices", "csv_export", "unlimited_projects"];
 
