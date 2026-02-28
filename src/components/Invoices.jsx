@@ -7,7 +7,7 @@ import { FileText, Download, ChevronDown, Check, Settings, ArrowLeft, Trash2, Ey
 
 const STATUS_COLORS = {
   draft: { bg: 'bg-[#f1f5f9]', text: 'text-[#64748b]', label: 'Draft' },
-  sent: { bg: 'bg-[#dbeafe]', text: 'text-[#2563eb]', label: 'Sent' },
+  sent: { bg: 'bg-[#F0E6D6]', text: 'text-[#E8913A]', label: 'Sent' },
   paid: { bg: 'bg-[#dcfce7]', text: 'text-[#16a34a]', label: 'Paid' },
 }
 
@@ -44,7 +44,7 @@ function InvoiceSettingsPanel({ onBack }) {
 
   return (
     <div className="space-y-4">
-      <button onClick={onBack} className="flex items-center gap-1 text-sm text-[#2563eb] font-medium">
+      <button onClick={onBack} className="flex items-center gap-1 text-sm text-[#E8913A] font-medium">
         <ArrowLeft className="w-4 h-4" /> Back to Invoices
       </button>
       <h2 className="text-lg font-semibold text-[#1e293b]">Invoice Settings</h2>
@@ -82,7 +82,7 @@ function InvoiceSettingsPanel({ onBack }) {
               </div>
             )}
             <button onClick={() => fileRef.current?.click()}
-              className="px-3 py-1.5 text-xs font-medium text-[#2563eb] border border-[#2563eb] rounded-lg hover:bg-[#eff6ff]">
+              className="px-3 py-1.5 text-xs font-medium text-[#E8913A] border border-[#E8913A] rounded-lg hover:bg-[#FFF8F0]">
               {settings.logoDataUrl ? 'Change' : 'Upload'}
             </button>
             {settings.logoDataUrl && (
@@ -135,7 +135,7 @@ function InvoiceSettingsPanel({ onBack }) {
 
       <button onClick={save}
         className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
-          saved ? 'bg-[#16a34a]' : 'bg-[#2563eb] hover:bg-[#1d4ed8]'
+          saved ? 'bg-[#16a34a]' : 'bg-[#1B2A4A] hover:bg-[#132038]'
         }`}>
         {saved ? <><Check className="w-5 h-5" /> Saved!</> : 'Save Settings'}
       </button>
@@ -487,7 +487,7 @@ export function Invoices() {
   if (view === 'create') {
     return (
       <div className="space-y-4">
-        <button onClick={() => setView('list')} className="flex items-center gap-1 text-sm text-[#2563eb] font-medium">
+        <button onClick={() => setView('list')} className="flex items-center gap-1 text-sm text-[#E8913A] font-medium">
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
         <h2 className="text-lg font-semibold text-[#1e293b]">New Invoice</h2>
@@ -601,7 +601,7 @@ export function Invoices() {
             <div className="p-3">
               <button onClick={generatePDF}
                 className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
-                  generated ? 'bg-[#16a34a]' : 'bg-[#2563eb] hover:bg-[#1d4ed8]'
+                  generated ? 'bg-[#16a34a]' : 'bg-[#1B2A4A] hover:bg-[#132038]'
                 }`}>
                 {generated ? <><Check className="w-5 h-5" /> Invoice Created!</> : <><Download className="w-5 h-5" /> Generate & Download PDF</>}
               </button>
@@ -631,7 +631,7 @@ export function Invoices() {
       </div>
 
       <button onClick={() => setView('create')}
-        className="w-full py-3 rounded-xl font-semibold text-white bg-[#2563eb] hover:bg-[#1d4ed8] flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+        className="w-full py-3 rounded-xl font-semibold text-white bg-[#1B2A4A] hover:bg-[#132038] flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
         <Plus className="w-5 h-5" /> Create Invoice
       </button>
 
@@ -659,7 +659,7 @@ export function Invoices() {
                 <div className="flex items-center gap-2 mt-2">
                   {(inv.status || 'draft') === 'draft' && (
                     <button onClick={() => updateStatus(inv.id, 'sent')}
-                      className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#2563eb] bg-[#eff6ff] rounded-lg hover:bg-[#dbeafe]">
+                      className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#E8913A] bg-[#FFF8F0] rounded-lg hover:bg-[#F0E6D6]">
                       <Send className="w-3 h-3" /> Mark Sent
                     </button>
                   )}

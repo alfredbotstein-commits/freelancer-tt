@@ -113,7 +113,7 @@ export function Timer({ onEntryAdded }) {
           className={`w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-40 ${
             running
               ? 'bg-[#dc2626] hover:bg-[#b91c1c]'
-              : 'bg-[#2563eb] hover:bg-[#1d4ed8]'
+              : 'bg-[#1B2A4A] hover:bg-[#132038]'
           }`}
         >
           {running ? <><Square className="w-5 h-5" /> Stop Timer</> : <><Play className="w-5 h-5" /> Start Timer</>}

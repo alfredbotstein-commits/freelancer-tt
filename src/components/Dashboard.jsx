@@ -37,7 +37,7 @@ export function Dashboard() {
     return { ...client, totalMs, billable, weekMs, entryCount: clientEntries.length }
   }).filter(c => c.entryCount > 0).sort((a, b) => b.billable - a.billable)
 
-  const StatCard = ({ icon: Icon, label, value, sub, color = '#2563eb' }) => (
+  const StatCard = ({ icon: Icon, label, value, sub, color = '#1B2A4A' }) => (
     <div className="bg-white rounded-xl p-4 border border-[#e2e8f0] shadow-sm">
       <div className="flex items-center gap-2 mb-1">
         <Icon className="w-4 h-4" style={{ color }} />
@@ -63,7 +63,7 @@ export function Dashboard() {
       {clientBreakdown.length > 0 && (
         <div className="bg-white rounded-xl border border-[#e2e8f0] shadow-sm overflow-hidden">
           <div className="px-4 py-3 border-b border-[#e2e8f0] flex items-center gap-2">
-            <Users className="w-4 h-4 text-[#2563eb]" />
+            <Users className="w-4 h-4 text-[#E8913A]" />
             <h3 className="text-sm font-semibold text-[#1e293b]">Per Client</h3>
           </div>
           <div className="divide-y divide-[#f1f5f9]">

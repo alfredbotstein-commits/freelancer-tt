@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { store } from '../store'
 import { formatDuration, formatMoney } from '../utils'
-import { Plus, Trash2, X, ChevronDown } from 'lucide-react'
+import { Plus, Trash2, X, ChevronDown, Download } from 'lucide-react'
+import { isPremium } from '../premium'
 
 export function Entries({ onUpdate }) {
   const [showForm, setShowForm] = useState(false)
@@ -44,7 +45,7 @@ export function Entries({ onUpdate }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-[#1e293b]">Time Entries</h2>
-        <button onClick={() => setShowForm(!showForm)} className="w-9 h-9 rounded-lg bg-[#2563eb] text-white flex items-center justify-center">
+        <button onClick={() => setShowForm(!showForm)} className="w-9 h-9 rounded-lg bg-[#1B2A4A] text-white flex items-center justify-center">
           {showForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </button>
       </div>
@@ -74,7 +75,7 @@ export function Entries({ onUpdate }) {
             <input type="number" value={form.minutes} onChange={e => setForm({ ...form, minutes: e.target.value })}
               placeholder="Minutes" min="0" max="59" className="flex-1 px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
           </div>
-          <button onClick={save} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium">
+          <button onClick={save} className="w-full py-2.5 bg-[#1B2A4A] text-white rounded-lg text-sm font-medium">
             Add Entry
           </button>
         </div>

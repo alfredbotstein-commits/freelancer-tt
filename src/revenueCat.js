@@ -10,9 +10,8 @@ export async function initRevenueCat() {
   try {
     await Purchases.configure({ apiKey: API_KEY });
     initialized = true;
-    console.log("RevenueCat initialized");
   } catch (e) {
-    console.warn("RevenueCat init failed:", e);
+    // RevenueCat init failed silently
   }
 }
 
@@ -22,7 +21,7 @@ export async function checkPremium() {
     const { customerInfo } = await Purchases.getCustomerInfo();
     return customerInfo.entitlements.active["premium"] !== undefined;
   } catch (e) {
-    console.warn("RevenueCat check failed:", e);
+    // RevenueCat check failed silently
     return false;
   }
 }

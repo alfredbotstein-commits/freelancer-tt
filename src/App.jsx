@@ -24,7 +24,7 @@ export default function App() {
       {/* Header */}
       <header className="bg-white border-b border-[#e2e8f0] px-4 py-3 flex items-center justify-between safe-area-pt">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-[#2563eb] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[#1B2A4A] flex items-center justify-center">
             <Clock className="w-4 h-4 text-white" />
           </div>
           <h1 className="text-lg font-semibold text-[#1e293b]">Freelance Timer</h1>
@@ -50,7 +50,7 @@ export default function App() {
               key={t.id}
               onClick={() => setTab(t.id)}
               className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors min-w-[56px] ${
-                active ? 'text-[#2563eb]' : 'text-[#94a3b8] hover:text-[#64748b]'
+                active ? 'text-[#E8913A]' : 'text-[#94a3b8] hover:text-[#64748b]'
               }`}
             >
               <Icon className="w-5 h-5" strokeWidth={active ? 2.5 : 2} />

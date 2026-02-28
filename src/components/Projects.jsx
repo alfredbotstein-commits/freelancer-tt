@@ -54,9 +54,9 @@ export function Projects({ onUpdate }) {
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-[#1e293b] flex items-center gap-2">
-            <User className="w-5 h-5 text-[#2563eb]" /> Clients
+            <User className="w-5 h-5 text-[#E8913A]" /> Clients
           </h2>
-          <button onClick={() => setShowClientForm(!showClientForm)} className="w-8 h-8 rounded-lg bg-[#2563eb] text-white flex items-center justify-center">
+          <button onClick={() => setShowClientForm(!showClientForm)} className="w-8 h-8 rounded-lg bg-[#1B2A4A] text-white flex items-center justify-center">
             {showClientForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           </button>
         </div>
@@ -67,7 +67,7 @@ export function Projects({ onUpdate }) {
               placeholder="Client name" maxLength={200} className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
             <input type="email" value={clientForm.email} onChange={e => setClientForm({ ...clientForm, email: e.target.value })}
               placeholder="Email (optional)" maxLength={500} className="w-full px-3 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
-            <button onClick={saveClient} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium">Add Client</button>
+            <button onClick={saveClient} className="w-full py-2.5 bg-[#1B2A4A] text-white rounded-lg text-sm font-medium">Add Client</button>
           </div>
         )}
 
@@ -95,7 +95,7 @@ export function Projects({ onUpdate }) {
         <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-semibold text-[#1e293b] flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-[#2563eb]" /> Projects
+              <Briefcase className="w-5 h-5 text-[#E8913A]" /> Projects
             </h2>
             {!isPremium() && (
               <p className="text-xs text-[#94a3b8]">
@@ -103,7 +103,7 @@ export function Projects({ onUpdate }) {
               </p>
             )}
           </div>
-          <button onClick={() => setShowProjectForm(!showProjectForm)} className="w-8 h-8 rounded-lg bg-[#2563eb] text-white flex items-center justify-center">
+          <button onClick={() => setShowProjectForm(!showProjectForm)} className="w-8 h-8 rounded-lg bg-[#1B2A4A] text-white flex items-center justify-center">
             {showProjectForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           </button>
         </div>
@@ -126,7 +126,7 @@ export function Projects({ onUpdate }) {
                 placeholder="0.00" min="0" step="0.01" className="w-full pl-7 pr-16 py-2.5 border border-[#e2e8f0] rounded-lg text-sm" />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#94a3b8]">/hour</span>
             </div>
-            <button onClick={saveProject} disabled={clients.length === 0 || !canAddProject} className="w-full py-2.5 bg-[#2563eb] text-white rounded-lg text-sm font-medium disabled:opacity-40">
+            <button onClick={saveProject} disabled={clients.length === 0 || !canAddProject} className="w-full py-2.5 bg-[#1B2A4A] text-white rounded-lg text-sm font-medium disabled:opacity-40">
               Add Project
             </button>
             {clients.length === 0 && <p className="text-xs text-[#f59e0b] text-center">Add a client first</p>}
