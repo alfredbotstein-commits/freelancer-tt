@@ -34,6 +34,30 @@ export function Entries({ onUpdate }) {
     onUpdate?.()
   }
 
+  const exportCSV = () => {
+    if (!isPremium()) {
+      alert('Upgrade to Premium to export your time entries as CSV.')
+      return
+    }
+    const rows = [['Date', 'Project', 'Client', 'Description', 'Hours', 'Rate', 'Amount']]
+    entries.forEach(e => {
+      const project = projects.find(p => p.id === e.projectId)
+      const client = project ? clients.find(c => c.id === project.clientId) : null
+      const hours = (e.duration / 3600000).toFixed(2)
+      const rate = project?.hourlyRate || 0
+      const amount = (hours * rate).toFixed(2)
+      rows.push([e.date, project?.name || '', client?.name || '', e.description || '', hours, rate, amount])
+    })
+    const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `time-entries-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   // Group by date
   const grouped = {}
   entries.forEach(e => {
@@ -45,9 +69,16 @@ export function Entries({ onUpdate }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-[#1e293b]">Time Entries</h2>
+        <div className="flex items-center gap-2">
+        {entries.length > 0 && (
+          <button onClick={exportCSV} className="w-9 h-9 rounded-lg border border-[#e2e8f0] text-[#E8913A] flex items-center justify-center hover:bg-[#FFF8F0]" title="Export CSV">
+            <Download className="w-4 h-4" />
+          </button>
+        )}
         <button onClick={() => setShowForm(!showForm)} className="w-9 h-9 rounded-lg bg-[#1B2A4A] text-white flex items-center justify-center">
           {showForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </button>
+        </div>
       </div>
 
       {/* Manual entry form */}
