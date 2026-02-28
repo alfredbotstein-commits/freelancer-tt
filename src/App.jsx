@@ -22,7 +22,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f8fafc]">
       {/* Header */}
-      <header className="bg-white border-b border-[#e2e8f0] px-4 py-3 flex items-center justify-between">
+      <header className="bg-white border-b border-[#e2e8f0] px-4 py-3 flex items-center justify-between safe-area-pt">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-[#2563eb] flex items-center justify-center">
             <Clock className="w-4 h-4 text-white" />

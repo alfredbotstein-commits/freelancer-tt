@@ -28,7 +28,7 @@ Your data stays on your device. No account required, no cloud sync, no subscript
 We believe your business data belongs to you. Freelance Timer stores everything locally on your device. We don't collect analytics, we don't track you, and we don't sell your data. Your client list, hours, and invoices never leave your phone.
 
 ### Features at a Glance
-- One-tap timer with pause/resume
+- One-tap start/stop timer
 - Organize work by clients and projects
 - Custom hourly rates per project
 - Dashboard with weekly stats and earnings

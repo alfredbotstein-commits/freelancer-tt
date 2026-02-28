@@ -470,6 +470,7 @@ export function Invoices() {
   }
 
   const deleteInvoice = (id) => {
+    if (!window.confirm('Delete this invoice?')) return
     store.deleteInvoice(id)
     setView('list')
   }

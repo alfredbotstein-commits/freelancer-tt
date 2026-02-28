@@ -28,6 +28,7 @@ export function Entries({ onUpdate }) {
   }
 
   const remove = (id) => {
+    if (!window.confirm('Delete this time entry?')) return
     store.deleteEntry(id)
     onUpdate?.()
   }

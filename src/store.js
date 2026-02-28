@@ -38,6 +38,19 @@ export const store = {
     return clients;
   },
   deleteClient: (id) => {
+    // Get projects belonging to this client
+    const projects = get(KEYS.projects);
+    const clientProjectIds = projects.filter(p => p.clientId === id).map(p => p.id);
+
+    // Delete entries belonging to client's projects
+    const entries = get(KEYS.entries).filter(e => !clientProjectIds.includes(e.projectId));
+    set(KEYS.entries, entries);
+
+    // Delete client's projects
+    const remainingProjects = projects.filter(p => p.clientId !== id);
+    set(KEYS.projects, remainingProjects);
+
+    // Delete client
     const clients = get(KEYS.clients).filter(c => c.id !== id);
     set(KEYS.clients, clients);
     return clients;
@@ -55,6 +68,11 @@ export const store = {
     return projects;
   },
   deleteProject: (id) => {
+    // Delete entries belonging to this project
+    const entries = get(KEYS.entries).filter(e => e.projectId !== id);
+    set(KEYS.entries, entries);
+
+    // Delete project
     const projects = get(KEYS.projects).filter(p => p.id !== id);
     set(KEYS.projects, projects);
     return projects;

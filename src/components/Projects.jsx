@@ -37,8 +37,16 @@ export function Projects({ onUpdate }) {
     onUpdate?.()
   }
 
-  const deleteClient = (id) => { store.deleteClient(id); onUpdate?.() }
-  const deleteProject = (id) => { store.deleteProject(id); onUpdate?.() }
+  const deleteClient = (id) => {
+    if (!window.confirm('Delete this client? This will also delete all their projects and time entries.')) return
+    store.deleteClient(id)
+    onUpdate?.()
+  }
+  const deleteProject = (id) => {
+    if (!window.confirm('Delete this project? This will also delete all its time entries.')) return
+    store.deleteProject(id)
+    onUpdate?.()
+  }
 
   return (
     <div className="space-y-6">
